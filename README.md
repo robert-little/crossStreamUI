@@ -10,7 +10,7 @@ Google Play
 Spotify
 YouTube (converting to YouTube only)
 
-### Using CrossStream
+## Using CrossStream
 
 Copy a song link from your perfered, supported, music streaming and paste it into the search bar.
 Hit the `Cross the Streams` button 
