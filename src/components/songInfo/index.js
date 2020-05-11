@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 import './index.scss'
 
 const SongInfo = (props) => {
-
-    console.log(props);
-
     return (
         <div className="songInfo">
             <img src={props.info.albumArt} width="90" className="thumbnail" alt="album art"/>

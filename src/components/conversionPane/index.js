@@ -7,8 +7,6 @@ import SongInfo from '../songInfo/index';
 import LinkList from '../linkList/index';
 
 const ConversionPane = (props) => {
-    console.log(props.conversionData);
-
     return (
         <Col md={{size: 8, offset: 2}} xs="12">
             { !props.loading && props.conversionData.songInfo && props.conversionData.links && 

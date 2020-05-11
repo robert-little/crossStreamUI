@@ -12,6 +12,7 @@ const Layout = (props) => {
     // Setting up state
     const [conversionData, setConversionData] = useState({});
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
 
     // Setting class vars
@@ -37,18 +38,22 @@ const Layout = (props) => {
             method: 'get',
             url: 'https://crossstream.ca/song/'+link
         }).then((resp) => {
-            console.log(resp);
+            // We know we have an error
+            if (typeof(resp.data) === 'string') {
+                setError(resp.data);
+                setLoading(false);
+            } else {
+                // updating the url if we get a success
+                if (deepLink.length === 0) {
+                    window.history.replaceState(null, null, ('?song='+link));
+                }
 
-            // updating the url if we get a success
-            if (deepLink.length === 0) {
-                console.log('replaced');
-                window.history.replaceState(null, null, ('?song='+link));
+                // Need to put the link that was originally used into the array
+                resp.data.links.unshift({service: linkType, link});
+                setConversionData(resp.data);
+                // setError(null);
+                setLoading(false);
             }
-
-            // Need to put the link that was originally used into the array
-            resp.data.links.unshift({service: linkType, link});
-            setConversionData(resp.data);
-            setLoading(false);
         }).catch((err) => {
             console.log('error', err);
             // setLinks(// Error message here);
@@ -58,7 +63,7 @@ const Layout = (props) => {
     
     return (
         <Container className="layout">
-            <SearchHeader onClick={submitLink} loading={loading} />
+            <SearchHeader onClick={submitLink} loading={loading} error={error}/>
             <ConversionPane conversionData={conversionData} loading={loading} />
         </Container>
     )
