@@ -1,0 +1,32 @@
+@import "../../variables";
+
+.infoText{
+    .infoIcon{
+        position: absolute;
+        color: #29c2c4;
+        top: 79px;
+        right: 25px;
+        font-size: x-large;
+
+        &:focus{
+            outline: none;
+        }
+    }
+
+    @media (max-width: $sm) {
+        .search{
+            font-size: 13px;
+        }
+
+        .infoIcon{
+            font-size: 18px;
+        }
+    }
+}
+
+.infoPopover{
+    max-width: 315px !important;
+    .exampleLink{
+        font-size: 12px;
+    }
+}
